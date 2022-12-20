@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -36,9 +37,16 @@ public class StudentListActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
         adapter.setOnItemClickListener(position -> {
-            Log.d("TAG", "row " + position + " was clicked");
+//            Log.d("TAG", "row " + position + " was clicked");
+//            Intent intent = new Intent(this, NewStudentActivity.class);
 //            Intent intent = new Intent(this, NewStudentActivity.class);
 //            startActivity(intent);
+        });
+
+        Button addStudentBtn = findViewById(R.id.studentlist_add_btn);
+        addStudentBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NewStudentActivity.class);
+            startActivity(intent);
         });
     }
 
