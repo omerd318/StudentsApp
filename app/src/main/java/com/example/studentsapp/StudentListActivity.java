@@ -88,7 +88,6 @@ public class StudentListActivity extends AppCompatActivity {
         public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = getLayoutInflater().inflate(R.layout.student_list_row, parent, false);
 
-
             return new StudentViewHolder(view, listener);
         }
 
