@@ -26,7 +26,6 @@ public class StudentListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
-
         data = Model.instance().getAllStudents();
 
         RecyclerView list = findViewById(R.id.studentlist_list);
@@ -37,7 +36,6 @@ public class StudentListActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
         adapter.setOnItemClickListener(position -> {
-//            Log.d("TAG", "row " + position + " was clicked");
 //            Intent intent = new Intent(this, NewStudentActivity.class);
 //            Intent intent = new Intent(this, NewStudentActivity.class);
 //            startActivity(intent);
@@ -46,9 +44,20 @@ public class StudentListActivity extends AppCompatActivity {
         Button addStudentBtn = findViewById(R.id.studentlist_add_btn);
         addStudentBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, NewStudentActivity.class);
-            startActivity(intent);
+//            startActivityForResult(intent, '1');
+//            getResult.launch(intent);
         });
     }
+
+//    private val getResult =
+//            registerForActivityResult(
+//                    ActivityResultContracts.StartActivityForResult()) {
+//        if(it.resultCode == Activity.RESULT_OK){
+//            val value = it.data?.getStringExtra("input")
+//        }
+//    }
+
+
 
     class StudentViewHolder extends RecyclerView.ViewHolder {
         TextView nameTv;
