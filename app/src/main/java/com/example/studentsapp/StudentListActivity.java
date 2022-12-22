@@ -1,5 +1,9 @@
 package com.example.studentsapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -19,14 +24,13 @@ import com.example.studentsapp.model.Student;
 import java.util.List;
 
 public class StudentListActivity extends AppCompatActivity {
-    List<Student> data;
+    List<Student> students;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
-
-        data = Model.instance().getAllStudents();
+        students = Model.instance().getAllStudents();
 
         RecyclerView list = findViewById(R.id.studentlist_list);
         list.setHasFixedSize(true);
@@ -36,9 +40,18 @@ public class StudentListActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
         adapter.setOnItemClickListener(position -> {
-            Log.d("TAG", "row " + position + " was clicked");
-//            Intent intent = new Intent(this, AddStudentActivity.class);
-//            startActivity(intent);
+//            Call Student Details screen
+        });
+
+        Intent createIntent = new Intent(this, NewStudentActivity.class);
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result ->
+                    adapter.notifyDataSetChanged());
+
+        Button addStudentBtn = findViewById(R.id.studentlist_add_btn);
+        addStudentBtn.setOnClickListener(v -> {
+            launcher.launch(createIntent);
         });
     }
 
@@ -55,7 +68,7 @@ public class StudentListActivity extends AppCompatActivity {
 
             cb.setOnClickListener(v -> {
                 int pos = (int)cb.getTag();
-                Student st = data.get(pos);
+                Student st = students.get(pos);
                 st.setCb(cb.isChecked());
             });
 
@@ -88,19 +101,18 @@ public class StudentListActivity extends AppCompatActivity {
         public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = getLayoutInflater().inflate(R.layout.student_list_row, parent, false);
 
-
             return new StudentViewHolder(view, listener);
         }
 
         @Override
         public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-            Student st = data.get(position);
+            Student st = students.get(position);
             holder.bind(st, position);
         }
 
         @Override
         public int getItemCount() {
-            return data.size();
+            return students.size();
         }
     }
 }
