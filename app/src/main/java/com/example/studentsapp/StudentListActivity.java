@@ -40,7 +40,9 @@ public class StudentListActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
         adapter.setOnItemClickListener(position -> {
-//            Call Student Details screen
+            Log.d("TAG", "row " + position + " was clicked");
+            Intent studentDetailsIntent = new Intent(this, StudentDetailsActivity.class);
+            startActivity(studentDetailsIntent);
         });
 
         Intent createIntent = new Intent(this, NewStudentActivity.class);
