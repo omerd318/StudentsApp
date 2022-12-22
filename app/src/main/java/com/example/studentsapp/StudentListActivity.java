@@ -1,7 +1,5 @@
 package com.example.studentsapp;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -11,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,18 +36,18 @@ public class StudentListActivity extends AppCompatActivity {
         StudentRecyclerAdapter adapter = new StudentRecyclerAdapter();
         list.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(position -> {
-            Log.d("TAG", "row " + position + " was clicked");
-            Intent studentDetailsIntent = new Intent(this, StudentDetailsActivity.class);
-            startActivity(studentDetailsIntent);
-        });
-
-        Intent createIntent = new Intent(this, NewStudentActivity.class);
         ActivityResultLauncher<Intent> launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result ->
-                    adapter.notifyDataSetChanged());
+                        adapter.notifyDataSetChanged());
 
+        adapter.setOnItemClickListener(position -> {
+            Intent detailsIntent = new Intent(this, StudentDetailsActivity.class);
+            detailsIntent.putExtra("position", position);
+            launcher.launch(detailsIntent);
+        });
+
+        Intent createIntent = new Intent(this, NewStudentActivity.class);
         Button addStudentBtn = findViewById(R.id.studentlist_add_btn);
         addStudentBtn.setOnClickListener(v -> {
             launcher.launch(createIntent);

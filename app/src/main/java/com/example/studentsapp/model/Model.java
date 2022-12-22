@@ -24,4 +24,16 @@ public class Model {
     public void addStudent(Student st) {
         data.add(st);
     }
+
+    public void deleteStudent(int position) {
+        data.remove(position);
+    }
+
+    public void editStudent(Student st, int position) {
+        data.get(position).setName(st.getName());
+        data.get(position).setId(st.getId());
+        data.get(position).setPhone(st.getPhone());
+        data.get(position).setAddress(st.getAddress());
+        data.get(position).setCb(st.getCb());
+    }
 }

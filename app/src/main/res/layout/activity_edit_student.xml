@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewStudentActivity">
+    tools:context=".EditStudentActivity">
 
     <TextView
-        android:id="@+id/newstudent_name_tv"
+        android:id="@+id/editstudent_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -15,10 +15,10 @@
         android:text="Name:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newstudent_avatar_img" />
+        app:layout_constraintTop_toBottomOf="@+id/editstudent_avatar_img" />
 
     <EditText
-        android:id="@+id/newstudent_name_et"
+        android:id="@+id/editstudent_name_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -26,12 +26,12 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/newstudent_name_tv"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editstudent_name_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newstudent_name_tv" />
+        app:layout_constraintStart_toEndOf="@+id/editstudent_name_tv" />
 
     <TextView
-        android:id="@+id/newstudent_id_tv"
+        android:id="@+id/editstudent_id_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -39,10 +39,10 @@
         android:text="Id:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newstudent_name_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/editstudent_name_tv" />
 
     <EditText
-        android:id="@+id/newstudent_id_et"
+        android:id="@+id/editstudent_id_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -50,12 +50,12 @@
         android:ems="10"
         android:inputType="number|textPersonName"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/newstudent_id_tv"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editstudent_id_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newstudent_id_tv" />
+        app:layout_constraintStart_toEndOf="@+id/editstudent_id_tv" />
 
     <TextView
-        android:id="@+id/newstudent_phone_tv"
+        android:id="@+id/editstudent_phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -63,10 +63,10 @@
         android:text="Phone:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newstudent_id_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/editstudent_id_tv" />
 
     <EditText
-        android:id="@+id/newstudent_phone_et"
+        android:id="@+id/editstudent_phone_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -74,12 +74,12 @@
         android:ems="10"
         android:inputType="textPersonName|phone"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/newstudent_phone_tv"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editstudent_phone_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newstudent_phone_tv" />
+        app:layout_constraintStart_toEndOf="@+id/editstudent_phone_tv" />
 
     <TextView
-        android:id="@+id/newstudent_address_tv"
+        android:id="@+id/editstudent_address_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -87,10 +87,10 @@
         android:text="Address:"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newstudent_phone_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/editstudent_phone_tv" />
 
     <EditText
-        android:id="@+id/newstudent_address_et"
+        android:id="@+id/editstudent_address_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -98,48 +98,22 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/newstudent_address_tv"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editstudent_address_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newstudent_address_tv" />
-
-    <Button
-        android:id="@+id/newstudent_cancel_btn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="30dp"
-        android:text="CANCEL"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/newstudent_save_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/newstudent_save_btn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
-        android:text="SAVE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/newstudent_cancel_btn" />
+        app:layout_constraintStart_toEndOf="@+id/editstudent_address_tv" />
 
     <CheckBox
-        android:id="@+id/newstudent_cb"
+        android:id="@+id/editstudent_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:text="checked"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newstudent_address_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/editstudent_address_tv" />
 
     <ImageView
-        android:id="@+id/newstudent_avatar_img"
+        android:id="@+id/editstudent_avatar_img"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="20dp"
@@ -148,5 +122,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/avatar" />
+
+    <Button
+        android:id="@+id/editstudent_save_btn"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="SAVE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editstudent_delete_btn" />
+
+    <Button
+        android:id="@+id/editstudent_delete_btn"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="DELETE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editstudent_save_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editstudent_cancel_btn" />
+
+    <Button
+        android:id="@+id/editstudent_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="CANCEL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editstudent_delete_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

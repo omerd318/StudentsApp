@@ -29,7 +29,7 @@ public class NewStudentActivity extends AppCompatActivity {
         EditText phoneEt = findViewById(R.id.newstudent_phone_et);
         EditText addressEt = findViewById(R.id.newstudent_address_et);
 
-        ImageView avatarImg = findViewById(R.id.newstudent_avatar_img);
+        //ImageView avatarImg = findViewById(R.id.newstudent_avatar_img);
 
         Button saveBtn = findViewById(R.id.newstudent_save_btn);
         Button cancelBtn = findViewById(R.id.newstudent_cancel_btn);
