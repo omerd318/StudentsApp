@@ -1,5 +1,9 @@
 package com.example.studentsapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -25,7 +30,6 @@ public class StudentListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
-
         students = Model.instance().getAllStudents();
 
         RecyclerView list = findViewById(R.id.studentlist_list);
@@ -39,6 +43,17 @@ public class StudentListActivity extends AppCompatActivity {
             Log.d("TAG", "row " + position + " was clicked");
             Intent studentDetailsIntent = new Intent(this, StudentDetailsActivity.class);
             startActivity(studentDetailsIntent);
+        });
+
+        Intent createIntent = new Intent(this, NewStudentActivity.class);
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result ->
+                    adapter.notifyDataSetChanged());
+
+        Button addStudentBtn = findViewById(R.id.studentlist_add_btn);
+        addStudentBtn.setOnClickListener(v -> {
+            launcher.launch(createIntent);
         });
     }
 
@@ -87,7 +102,6 @@ public class StudentListActivity extends AppCompatActivity {
         @Override
         public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = getLayoutInflater().inflate(R.layout.student_list_row, parent, false);
-
 
             return new StudentViewHolder(view, listener);
         }
