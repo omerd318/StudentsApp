@@ -19,14 +19,14 @@ import com.example.studentsapp.model.Student;
 import java.util.List;
 
 public class StudentListActivity extends AppCompatActivity {
-    List<Student> data;
+    List<Student> students;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
 
-        data = Model.instance().getAllStudents();
+        students = Model.instance().getAllStudents();
 
         RecyclerView list = findViewById(R.id.studentlist_list);
         list.setHasFixedSize(true);
@@ -37,8 +37,8 @@ public class StudentListActivity extends AppCompatActivity {
 
         adapter.setOnItemClickListener(position -> {
             Log.d("TAG", "row " + position + " was clicked");
-//            Intent intent = new Intent(this, AddStudentActivity.class);
-//            startActivity(intent);
+            Intent studentDetailsIntent = new Intent(this, StudentDetailsActivity.class);
+            startActivity(studentDetailsIntent);
         });
     }
 
@@ -55,7 +55,7 @@ public class StudentListActivity extends AppCompatActivity {
 
             cb.setOnClickListener(v -> {
                 int pos = (int)cb.getTag();
-                Student st = data.get(pos);
+                Student st = students.get(pos);
                 st.setCb(cb.isChecked());
             });
 
@@ -94,13 +94,13 @@ public class StudentListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-            Student st = data.get(position);
+            Student st = students.get(position);
             holder.bind(st, position);
         }
 
         @Override
         public int getItemCount() {
-            return data.size();
+            return students.size();
         }
     }
 }
