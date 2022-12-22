@@ -4,6 +4,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -33,31 +35,22 @@ public class NewStudentActivity extends AppCompatActivity {
         Button cancelBtn = findViewById(R.id.newstudent_cancel_btn);
         CheckBox cb = findViewById(R.id.newstudent_cb);
 
-//        ActivityResultLauncher launcher = registerForActivityResult()
-//                ActivityResultContracts.StartActivityForResult() {
-//                result ->
-//                        Log.d(("TAG", "" + result));
-//        }
-
         saveBtn.setOnClickListener(v -> {
-            Model.instance().addStudent(new Student(nameEt.getText().toString(),
-                                                    idEt.getText().toString(),
-                                                    "",
-                                                    phoneEt.getText().toString(),
-                                                    addressEt.getText().toString(),
-                                                    cb.isChecked()));
-
-            finish();
-//            List<Student> data = Model.instance().getAllStudents();
-//            for(int i =0; i<data.size(); i++) {
-//                Log.d("TAG", data.get(i).getAvatarUrl());
-//            }
+            if((nameEt.getText().toString().trim().length() > 0)
+                    && (idEt.getText().toString().trim().length() > 0)) {
+                Student st = new Student(nameEt.getText().toString(),
+                        idEt.getText().toString(),
+                        "",
+                        phoneEt.getText().toString(),
+                        addressEt.getText().toString(),
+                        cb.isChecked());
+                Model.instance().addStudent(st);
+                finish();
+            }
         });
 
         cancelBtn.setOnClickListener(v -> {
             finish();
         });
     }
-
-
 }

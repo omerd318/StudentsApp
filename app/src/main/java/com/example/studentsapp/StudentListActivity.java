@@ -1,5 +1,9 @@
 package com.example.studentsapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,13 +24,13 @@ import com.example.studentsapp.model.Student;
 import java.util.List;
 
 public class StudentListActivity extends AppCompatActivity {
-    List<Student> data;
+    List<Student> students;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
-        data = Model.instance().getAllStudents();
+        students = Model.instance().getAllStudents();
 
         RecyclerView list = findViewById(R.id.studentlist_list);
         list.setHasFixedSize(true);
@@ -36,28 +40,20 @@ public class StudentListActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
         adapter.setOnItemClickListener(position -> {
-//            Intent intent = new Intent(this, NewStudentActivity.class);
-//            Intent intent = new Intent(this, NewStudentActivity.class);
-//            startActivity(intent);
+//            Call Student Details screen
         });
+
+        Intent createIntent = new Intent(this, NewStudentActivity.class);
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result ->
+                    adapter.notifyDataSetChanged());
 
         Button addStudentBtn = findViewById(R.id.studentlist_add_btn);
         addStudentBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, NewStudentActivity.class);
-//            startActivityForResult(intent, '1');
-//            getResult.launch(intent);
+            launcher.launch(createIntent);
         });
     }
-
-//    private val getResult =
-//            registerForActivityResult(
-//                    ActivityResultContracts.StartActivityForResult()) {
-//        if(it.resultCode == Activity.RESULT_OK){
-//            val value = it.data?.getStringExtra("input")
-//        }
-//    }
-
-
 
     class StudentViewHolder extends RecyclerView.ViewHolder {
         TextView nameTv;
@@ -72,7 +68,7 @@ public class StudentListActivity extends AppCompatActivity {
 
             cb.setOnClickListener(v -> {
                 int pos = (int)cb.getTag();
-                Student st = data.get(pos);
+                Student st = students.get(pos);
                 st.setCb(cb.isChecked());
             });
 
@@ -110,13 +106,13 @@ public class StudentListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-            Student st = data.get(position);
+            Student st = students.get(position);
             holder.bind(st, position);
         }
 
         @Override
         public int getItemCount() {
-            return data.size();
+            return students.size();
         }
     }
 }
